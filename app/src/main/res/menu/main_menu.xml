@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_completed_tasks"
+        android:icon="@drawable/ic_task_done"
+        android:title="Done Tasks"
+        app:showAsAction="always"
+        android:iconTint="@color/white"/>
+
+    <item
+        android:id="@+id/action_add_task"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Add Task"
+        app:showAsAction="always" />
+
+
+</menu>

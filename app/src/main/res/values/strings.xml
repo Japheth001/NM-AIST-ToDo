@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NM-AIST ToDo</string>
+    <string name="welcome"><b>WELCOME</b></string>
+    <string name="manage">Manage Tasks Easily</string>
+    <string name="profile">My Profile</string>
+    <string name="add">Add Task</string>
+    <string name="view">View Tasks</string>
+    <string name="reminder">Reminder</string>
+    <string name="alarm">Set Alarm</string>
+    <string name="calendar">View Calendar</string>
+    <string name="targets">Completed Tasks</string>
+    <string name="taskDone">Task Done</string>
+</resources>
