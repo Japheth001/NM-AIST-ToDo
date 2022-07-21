@@ -2,6 +2,7 @@ package com.example.todolistapp;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -35,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
         TaskList = (ListView) findViewById(R.id.list_todo);
 
         updateUI();
+
+
+
+//Added
+        //view.setOnClickListener(new View.OnClickListener() {
+           // @Override
+           // public void onClick(View v) {
+                //startActivity(new Intent(MainActivity.this,TasksDoneActivity.class));
+           // }
+       // });
+
+        //End
     }
 
     @Override
@@ -46,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+            case R.id.action_completed_tasks:
+                Intent intent=new Intent(MainActivity.this,TasksDoneActivity.class);
+                startActivity(intent);
+
+                return true;
+
             case R.id.action_add_task:
                 final EditText taskEdit = new EditText(this);
                 AlertDialog dialog = new AlertDialog.Builder(this)
@@ -58,8 +78,9 @@ public class MainActivity extends AppCompatActivity {
                                 ContentValues values = new ContentValues();
 
                                 values.put(TaskContract.TaskEntry.COL_TASK_TITLE, task);
-                                values.put(TaskContract.TaskEntry.STATUS, "1");
-                                db.insertWithOnConflict(TaskContract.TaskEntry.TABLE, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+                                values.put(TaskContract.TaskEntry.COL_TASK_IS_DONE, "0");
+                                db.insertWithOnConflict(TaskContract.TaskEntry.TABLE, null,
+                                        values, SQLiteDatabase.CONFLICT_REPLACE);
                                 db.close();
                                 updateUI();
                             }
@@ -73,20 +94,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updateStatus(String COL_TASK_TITLE, String status){
-        //View parent = (View) view.getParent();
-        //TextView taskTextView = (TextView) parent.findViewById(R.id.title_task);
-        //String task = String.valueOf(taskTextView.getText());
+    public void markAsDone(View view){
+        View parent = (View) view.getParent();
+        TextView taskTextView = (TextView) parent.findViewById(R.id.title_task);
+        String title = String.valueOf(taskTextView.getText());
+
         SQLiteDatabase db = taskHelper.getWritableDatabase();
         ContentValues values=new ContentValues();
-        values.put("STATUS", "1");
+        values.put(TaskContract.TaskEntry.COL_TASK_IS_DONE , "1");
         //Cursor cursor=db.rawQuery("UPDATE"+ TaskContract.TaskEntry.TABLE +
                         //" SET status = +2+ " + "WHERE status="1");
 
         db.update(TaskContract.TaskEntry.TABLE,
                 values,
-                TaskContract.TaskEntry.STATUS + " = ?",
-                new String[]{status});
+                TaskContract.TaskEntry.COL_TASK_TITLE + " = ?",
+                new String[]{title});
         db.close();
         updateUI();
     }
@@ -98,16 +120,6 @@ public class MainActivity extends AppCompatActivity {
         return cursor;
     }
 
-    public void deleteTask(View view) {
-        View parent = (View) view.getParent();
-        TextView taskTextView = (TextView) parent.findViewById(R.id.title_task);
-        String task = String.valueOf(taskTextView.getText());
-        SQLiteDatabase db = taskHelper.getWritableDatabase();
-        db.delete(TaskContract.TaskEntry.TABLE, TaskContract.TaskEntry.COL_TASK_TITLE + " = ?",
-                new String[]{task});
-        db.close();
-        updateUI();
-    }
 
 
     private void updateUI() {
@@ -115,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = taskHelper.getReadableDatabase();
         Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                null, null, null, null, null);
+                TaskContract.TaskEntry.COL_TASK_IS_DONE + " = ?", new String[]{"0"}, null, null, null);
         while (cursor.moveToNext()) {
             int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);
             taskList.add(cursor.getString(idx));

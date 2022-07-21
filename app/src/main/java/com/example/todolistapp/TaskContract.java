@@ -10,6 +10,7 @@ public class TaskContract {
         public static final String TABLE = "tasks";
 
         public static final String COL_TASK_TITLE = "title";
-        public static final String STATUS="status";
+        public static final String COL_TASK_IS_DONE = "is_done";
+
     }
 }
