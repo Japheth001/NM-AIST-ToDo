@@ -5,10 +5,12 @@
         android:layout_height="match_parent"
         tools:context=".TasksDoneActivity">
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp">
 
             <ImageView
                 android:id="@+id/nmPhoto"
@@ -30,7 +32,8 @@
         <ListView
             android:id="@+id/list_todo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
 
     </RelativeLayout>
 

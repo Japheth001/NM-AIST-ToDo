@@ -29,7 +29,7 @@ android {
                         // on below line we are setting a
                         // name to our apk as GFG.apk
                     output->
-                        def name = "NM-AIST ToDo.apk"
+                        def name = "NM-AIST-ToDo.apk"
                         // on below line we are setting the
                         // outputFile Name to our apk file.
                         output.outputFileName = name

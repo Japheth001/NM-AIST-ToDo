@@ -23,6 +23,7 @@
         android:onClick="markAsDone"
         android:layout_alignParentRight="true"
         android:text="@string/taskDone"
-        app:cornerRadius="25dp"/>
+        app:cornerRadius="25dp"
+        android:backgroundTint="@color/yel"/>
 
 </RelativeLayout>

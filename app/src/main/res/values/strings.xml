@@ -10,5 +10,7 @@
     <string name="calendar">View Calendar</string>
     <string name="targets">Completed Tasks</string>
     <string name="taskDone">Task Done</string>
-    <string name="taskClear">CLearTask</string>
+    <string name="taskComplete">Tasks Completed</string>
+    <string name="taskToDo">Tasks To Do</string>
+    <string name="taskClear">CLear Task</string>
 </resources>

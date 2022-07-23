@@ -2,18 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+        <item
         android:id="@+id/action_completed_tasks"
-        android:icon="@drawable/ic_task_done"
+        android:icon="@drawable/ic_home"
         android:title="Done Tasks"
         app:showAsAction="always"
         android:iconTint="@color/white"/>
 
-    <item
-        android:id="@+id/action_add_task"
-        android:icon="@drawable/ic_circle_add"
-        android:title="Add Task"
-        app:showAsAction="always" />
+
+
 
 
 </menu>

@@ -1,12 +1,19 @@
 package com.example.todolistapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +36,31 @@ public class TasksDoneActivity extends AppCompatActivity {
         updateUI();
 
     }
+
+    //Added
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.tasks_completed_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_completed_tasks:
+                Intent intent=new Intent(TasksDoneActivity.this,MainActivity.class);
+                startActivity(intent);
+
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //Ended
 
 
     public void deleteTask(View view) {
